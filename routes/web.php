@@ -27,7 +27,7 @@ Route::get('/', [DemoController::class, 'index']);
 //     $data=compact('name');
 // return view('home')->with($data);
 // });
-// Route::get('/about', function () {
-//     return view('layout.about');
-// });
+Route::get('/about', function () {
+    return view('layout.about');
+});
 
