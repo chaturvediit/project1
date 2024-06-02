@@ -13,6 +13,8 @@ use App\Http\Controllers\DemoController;
 |
 */
 Route::get('/', [DemoController::class, 'index']);
+Route::get('/form', [DemoController::class, 'submit_data']);
+Route::post('/form_action', [DemoController::class, 'registration']);
 
 
 // Route::get('/', function () {
@@ -27,7 +29,7 @@ Route::get('/', [DemoController::class, 'index']);
 //     $data=compact('name');
 // return view('home')->with($data);
 // });
-Route::get('/about', function () {
-    return view('layout.about');
-});
+// Route::get('/about', function () {
+//     return view('layout.about');
+// });
 

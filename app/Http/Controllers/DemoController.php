@@ -11,4 +11,17 @@ class DemoController extends Controller
       //  $data=compact();
        return view('home',['name' => 'Mahakal','address'=>'<h2>This is my html code</h2>']); 
     }
+
+    public function submit_data()
+    {
+      return view('form');
+    }
+    
+    public function registration(Request $req)
+    {
+
+      echo"<pre>";
+    print_r($req->all());
+
+    }
 }

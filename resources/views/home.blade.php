@@ -16,6 +16,7 @@
   <p>Resize this responsive page to see the effect!</p> 
   @if($name!='')
   <spane> Date:{{date('d-m-y')}}/{{$name}}</spane>
+   {!!$address!!}
   @else
   <spane> Name is Empty</spane>
   @endif
