@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DemoController;
+use App\Models\Customer;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,6 +16,15 @@ use App\Http\Controllers\DemoController;
 Route::get('/', [DemoController::class, 'index']);
 Route::get('/form', [DemoController::class, 'submit_data']);
 Route::post('/form_action', [DemoController::class, 'registration']);
+Route::get('/show',  [DemoController::class, 'show_data']);
+Route::get('/del/{id}',  [DemoController::class, 'remove_data']);
+// Route::get('/show', function () {
+// $Customer=Customer::all()->toArray();
+
+// echo"<pre>";
+// print_r($Customer);die;
+
+// });
 
 
 // Route::get('/', function () {
