@@ -10,9 +10,31 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
+<div class="row">
+    <div class="col-sm-4">
+  <div class="btn-group">
+    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+    Language
+    </button>
+    <div class="dropdown-menu">
+      <a class="dropdown-item" href="{{url('/')}}">English</a>
+      <a class="dropdown-item" href="{{url('/hi')}}">Hindi</a>
+      <a class="dropdown-item" href="{{url('/guj')}}">Gujarati</a>
+     
+    </div>
+  </div>
+
+
+
+    
+</div>
+</div>
+
+
+
 
 <div class="jumbotron text-center">
-  <h1>My First Bootstrap Page</h1>
+  <h1>@lang('lang.welcome')</h1>
   <p>Resize this responsive page to see the effect!</p> 
   @if($name!='')
   <spane> Date:{{date('d-m-y')}}/{{$name}}</spane>

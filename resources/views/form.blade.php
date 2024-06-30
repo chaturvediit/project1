@@ -12,7 +12,7 @@
 <body>
 
 <div class="container">
-  <h2>Stacked form</h2>
+  <h2 style="text-align: center;color: blueviolet;">{{$title}}</h2>
 
   <!-- @if ($errors->any())
     <div class="alert alert-danger">
@@ -26,13 +26,13 @@
 
 
 
-  <form action="{{url('/form_action')}}" method="post">
+  <form action="{{$url}}" method="post">
   <div class="row">
     <div class="col-sm-6">
     @csrf
     <div class="form-group">
       <label for="name">Name:</label>
-      <input type="text" class="form-control" id="name" placeholder="Enter Your Name" name="name" value="{{ old('name') }}">
+      <input type="text" class="form-control" id="name" placeholder="Enter Your Name" name="name" value="@if($Customer){{$Customer->name}} @endif">
       @error('name')
     <span class="text-danger">{{ $message }}</span>
      @enderror
@@ -41,13 +41,15 @@
     <div class="col-sm-6">
     <div class="form-group">
       <label for="email">Email:</label>
-      <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+      <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" value="@if($Customer){{$Customer->email}}@endif">
       @error('email')
     <span class="text-danger">{{ $message }}</span>
      @enderror
      
     </div>
     </div>
+    @if($Customer)
+    @else
     <div class="col-sm-6">
     <div class="form-group">
       <label for="pwd">Password:</label>
@@ -57,6 +59,9 @@
      @enderror
     </div>
     </div>
+    @endif
+    @if($Customer)
+    @else
     <div class="col-sm-6">
     <div class="form-group">
       <label for="pwd">Confirm Password:</label>
@@ -66,10 +71,11 @@
      @enderror
     </div>
     </div>
+    @endif
     <div class="col-sm-6">
     <div class="form-group">
       <label for="pwd">Contry:</label>
-      <input type="text" class="form-control" id="contry" placeholder="Enter Contry" name="contry">
+      <input type="text" class="form-control" id="contry" placeholder="Enter Contry" name="contry" value="@if($Customer){{$Customer->country}}@endif">
       @error('contry')
     <span class="text-danger">{{ $message }}</span>
      @enderror
@@ -78,7 +84,7 @@
     <div class="col-sm-6">
     <div class="form-group">
       <label for="pwd">State:</label>
-      <input type="text" class="form-control" id="state" placeholder="Enter State" name="state">
+      <input type="text" class="form-control" id="state" placeholder="Enter State" name="state" value="@if($Customer){{$Customer->state}}@endif">
       @error('state')
     <span class="text-danger">{{ $message }}</span>
      @enderror
@@ -87,7 +93,7 @@
     <div class="col-sm-12">
     <div class="form-group">
       <label for="pwd">Address:</label>
-      <textarea class="form-control" rows="2" id="comment" name="address"></textarea>
+      <textarea class="form-control" rows="2" id="comment" name="address">@if($Customer){{$Customer->address}}@endif</textarea>
       <!-- <input type="password" class="form-control" id="state" placeholder="Enter State" name="state"> -->
       @error('address')
     <span class="text-danger">{{ $message }}</span>
@@ -99,17 +105,17 @@
     <div class="form-group">
       <div class="form-check-inline">
   <label class="form-check-label">
-    <input type="radio" class="form-check-input" name="gender" value="M" >Male
+    <input type="radio" class="form-check-input" name="gender" value="M" @if($Customer){{$Customer->gender=='M'?'checked':''}}@endif>Male
   </label>
 </div>
 <div class="form-check-inline">
   <label class="form-check-label">
-    <input type="radio" class="form-check-input" name="gender" value="F" >Femal
+    <input type="radio" class="form-check-input" name="gender" value="F" @if($Customer){{$Customer->gender=='F'?'checked':''}}@endif>Femal
   </label>
 </div>
 <div class="form-check-inline">
   <label class="form-check-label">
-    <input type="radio" class="form-check-input" name="gender" value="O" >Other
+    <input type="radio" class="form-check-input" name="gender" value="O" @if($Customer){{$Customer->gender=='O'?'checked':''}}@endif>Other
   </label>
 </div>
 
@@ -123,7 +129,7 @@
     <div class="form-group">
       <label for="pwd">Dob:</label>
       
-      <input type="date" class="form-control" id="dob" placeholder="Ente D-O-B" name="dob">
+      <input type="date" class="form-control" id="dob" placeholder="Ente D-O-B" name="dob" value="@if($Customer){{$Customer->dob}}@endif">
       @error('dob')
     <span class="text-danger">{{ $message }}</span>
      @enderror

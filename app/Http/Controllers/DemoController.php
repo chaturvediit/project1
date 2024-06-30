@@ -4,20 +4,27 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\App;
 //use Illuminate\Support\Facades\Validator;
 use App\Models\Customer;
 
 class DemoController extends Controller
 {
-    public function index()
+    public function index(Request $req)
     {
+     // echo $req->lange;
+    App::setlocale($req->lange);
       //  $data=compact();
        return view('home',['name' => 'Mahakal','address'=>'<h2>This is my html code</h2>']); 
     }
 
     public function submit_data()
     {
-      return view('form');
+      $url=url('/form_action');
+      $Customer="";
+      $title='Customer Registration Form';
+      $data=compact('url','title','Customer');
+      return view('form',$data);
     }
     
     public function registration(Request $req)
@@ -54,17 +61,6 @@ class DemoController extends Controller
 //                 ->withInput();
 // }
 
-
-// [_token] => xeUqvRPqmavBsQwvUVkhNLzG82hCEnySZ6ghr47X
-// [name] => afasdfa
-// [email] => tt@gmail.com
-// [pswd] => 12345
-// [cpswd] => 12345
-// [contry] => india
-// [state] => Delhi
-// [address] => sgadsfga
-// [optradio] => on
-// [dob] => 2024-06-14
  $Customer=new Customer;
  $Customer->name = $req['name'];
  $Customer->email = $req['email'];
@@ -103,6 +99,63 @@ public function remove_data($id)
   // echo"<pre>";
   // print_r($Customer);die;
  // return'Delete data';
+}
+
+public function edit_data($id)
+{
+
+  $Customer=Customer::find($id);
+  if(is_null($Customer))
+  {
+    return redirect('/show');
+
+  }else{
+    $url=url('/update').'/'.$id;
+    $title='Customer Update Form';
+    $data=compact('Customer','url','title');
+    return view('form',$data);
+
+  }
+  
+}
+public function update_data($id, Request $req)
+{
+  $validated = $req->validate([
+    'name' => 'required',
+    'email' => 'required|email',
+    'contry' => 'required',
+    'state' => 'required',
+    'address' => 'required',
+    'gender' => 'required',
+    'dob' => 'required'
+]);
+
+$Customer=Customer::find($id);
+ $Customer->name = $req['name'];
+ $Customer->email = $req['email'];
+ $Customer->gender = $req['gender'];
+ $Customer->address = $req['address'];
+ $Customer->state = $req['state'];
+ $Customer->country = $req['contry'];
+ $Customer->dob = $req['dob'];
+ $Customer->save();
+ return redirect('/show');
+
+}
+
+public function select_image(){
+
+  return view('select_image');
+}
+public function upload(Request $req)
+{
+// echo"<pre>";
+// print_r($req->all());
+
+$path = $req->file('filename')->store();
+ 
+        return $path;
+
 }
 
 

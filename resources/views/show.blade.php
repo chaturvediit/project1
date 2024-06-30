@@ -65,7 +65,7 @@
 
         </td>
         <td><a href="{{url('/del')}}/{{$row['customers_id']}}"><button type="button" class="btn btn-danger">Delete</button></a>
-        <a href=""><button type="button" class="btn btn-info">Edit</button></a>
+        <a href="{{route('edit.customer',['id'=>$row['customers_id']])}}"><button type="button" class="btn btn-info">Edit</button></a>
       </td>
         
       </tr>
