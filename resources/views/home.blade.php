@@ -10,9 +10,13 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-<div class="row">
-    <div class="col-sm-4">
-  <div class="btn-group">
+<nav class="navbar navbar-expand-sm bg-light">
+
+  <!-- Links -->
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <!-- <a class="nav-link" href="#">Link 1</a> -->
+      <div class="btn-group">
     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
     Language
     </button>
@@ -24,14 +28,23 @@
     </div>
   </div>
 
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{{url('/user-registration')}}">Register</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{{url('/user-login')}}">Login</a>
+    </li>
+  </ul>
 
+</nav>
 
-    
-</div>
-</div>
-
-
-
+<div class="container">
+@if(session('success'))
+    <div class="alert alert-danger alert-dismissible fade show">
+        {{ session('success') }}
+    </div>
+@endif
 
 <div class="jumbotron text-center">
   <h1>@lang('lang.welcome')</h1>

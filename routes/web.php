@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DemoController;
+use App\Http\Controllers\LoginDashboard;
+use App\Http\Controllers\TestMiddelwarecode;
 //use App\Models\Customer;
 /*
 |--------------------------------------------------------------------------
@@ -14,7 +16,7 @@ use App\Http\Controllers\DemoController;
 |
 */
 Route::get('/', [DemoController::class, 'index']);
-Route::get('/form', [DemoController::class, 'submit_data']);
+Route::get('/form', [DemoController::class, 'submit_data'])->middleware('ikc');
 Route::post('/form_action', [DemoController::class, 'registration']);
 Route::get('/show',  [DemoController::class, 'show_data']);
 Route::get('/image',  [DemoController::class, 'select_image']);
@@ -22,9 +24,26 @@ Route::post('/upload',  [DemoController::class, 'upload']);
 Route::get('/del/{id}',  [DemoController::class, 'remove_data']);
 Route::get('/edit/{id}', [DemoController::class, 'edit_data'])->name('edit.customer');
 Route::post('/update/{id}', [DemoController::class, 'update_data'])->name('update.customer');
+/*================================Registration form==============================*/
+Route::get('/user-registration', [LoginDashboard::class, 'index']);
+Route::post('/user-insert', [LoginDashboard::class, 'submit_registration_data']);
+Route::get('/user-login', [LoginDashboard::class, 'loginview']);
+Route::post('/loginuser', [LoginDashboard::class, 'loginuser']);
+Route::get('/user-logout', [LoginDashboard::class, 'logoutuser']);
+
+Route::get('/in-middle', [TestMiddelwarecode::class, 'index'])->middleware('ikc');
+//Route::get('/login',[DemoController::class, 'submit_data']);
+
+
+
+/*================================Language Change===========================*/
+Route::get('/{lange?}', [DemoController::class, 'index']);
+
+
+
 // Route::get('/show', function () {
 
-Route::get('/{lange?}', [DemoController::class, 'index']);
+
 // $Customer=Customer::all()->toArray();
 
 // echo"<pre>";

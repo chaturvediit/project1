@@ -12,7 +12,14 @@
 <body>
 
 <div class="container">
+<a class="nav-link" href="{{url('/user-logout')}}"><button type="button" class="btn btn-danger">Logout</button></a>
+
+
+
   <h2 style="text-align: center;color: blueviolet;">{{$title}}</h2>
+
+
+
 
   <!-- @if ($errors->any())
     <div class="alert alert-danger">

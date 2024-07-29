@@ -1,5 +1,4 @@
 
-<h1>FOOTER</h1>
 
 
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>

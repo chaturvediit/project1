@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 //use Illuminate\Support\Facades\Validator;
 use App\Models\Customer;
+use Illuminate\Support\Facades\Auth;
 
 class DemoController extends Controller
 {
@@ -20,12 +21,14 @@ class DemoController extends Controller
 
     public function submit_data()
     {
+    
       $url=url('/form_action');
       $Customer="";
       $title='Customer Registration Form';
       $data=compact('url','title','Customer');
       return view('form',$data);
-    }
+  
+}
     
     public function registration(Request $req)
     {
@@ -84,6 +87,7 @@ public function show_data()
   // print_r($Customer);die;
 
 return view('show', $data);
+  
 
 }
 
